@@ -83,7 +83,7 @@ class Mono2DModel(object):
         self._x_dis = dis[0]
         self._y_dis = dis[1]
         
-        proc = subprocess.Popen(['/home/hsorby/work/musculoskeletal-software/test-application/iron', str(step_size), str(dis[0]), str(dis[1])],stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        proc = subprocess.Popen(['/home/abi/projects/simulation-data/bin/run-monodomain.sh', str(dis[0]), str(dis[1])],stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd="/home/abi/projects/simulation-data/Monodomain2D/experimental")
 #         stdout, stderr = proc.communicate()
         proc.communicate()
         self.loadSimulation()

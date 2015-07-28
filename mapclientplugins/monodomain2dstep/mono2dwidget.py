@@ -54,12 +54,13 @@ class Mono2DWidget(QtGui.QWidget):
         dis = self._model_experimental.getDis()
         self._ui.spinBoxXDiscretisation.setValue(dis[0])
         self._ui.spinBoxYDiscretisation.setValue(dis[1])
-        self._timer.setInterval(1) #*self._model_experimental.getTimeStep())
+        self._timer.setInterval(100) #*self._model_experimental.getTimeStep())
 
-        self._model_converged.setLocation('Monodomain2D/converged')
-        self._model_experimental.setLocation('Monodomain2D/experimental')
+        self._model_converged.setLocation('/home/abi/projects/simulation-data/Monodomain2D/converged')
+        self._model_experimental.setLocation('/home/abi/projects/simulation-data/Monodomain2D/experimental')
 
-        self._model_converged.simulate(0.1, [7, 7])
+	self._model_converged.loadSimulation()
+        #self._model_converged.simulate(0.1, [7, 7])
         self._model_converged.createVisualisation()       
 #         self._model_experimental.simulate(0.1, [dis[0], dis[1]])
 #         self._model_experimental.createVisualisation()
@@ -116,7 +117,7 @@ class Mono2DWidget(QtGui.QWidget):
         step_size = self._model_experimental.getStepSize()
         time = self._model_experimental.getMinTime() + value * step_size
         self._ui.labelTime.setText('{:10.4f}'.format(time))
-        self._model_converged.setTime(10.0*time)
+        self._model_converged.setTime(time)
         self._model_experimental.setTime(time)
         
     def _timeChanged(self, value):
@@ -133,7 +134,7 @@ class Mono2DWidget(QtGui.QWidget):
         """
         value = self._ui.horizontalSliderTime.value()
         max_value = self._ui.horizontalSliderTime.maximum()
-        value += 1
+        value += 10
         if max_value < value:
             value = 0
 
