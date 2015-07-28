@@ -1,0 +1,6 @@
+
+<RCC>
+  <qresource prefix="monodomain2dstep">
+    <file>images/fitting.png</file>
+  </qresource>
+</RCC>
